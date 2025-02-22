@@ -172,7 +172,7 @@
       })
       .catch(error => console.error('Error fetching games:', error));
 
-        fetch('score.json')
+        fetch('Score.json')
       .then(response => response.json())
       .then(scores => {
         scores.sort((a, b) => b.score - a.score);
