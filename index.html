@@ -80,15 +80,11 @@
   <div id="container">
     <section id="uitdaging">
       <h2>Uitdaging</h2>
-    <p>Offline VS Triggerhappy = <span class="tooltip" data-tooltip="Scoren"><u>...</u></span></p>
-    <br>
-    <p>Lama VS Triggerhappy = <span class="tooltip" data-tooltip="(9/5)"><u>Triggerhappy</u></span></p>
-    <p>Lama VS Offline = <span class="tooltip" data-tooltip="Scoren"><u>...</u></span></p>
-    <br>
-    <p>Cooking_with_me VS Triggerhappy = <span class="tooltip" data-tooltip="Scoren"><u>...</u></span></p>
-    <p>Cooking_with_me VS Offline = <span class="tooltip" data-tooltip="Scoren"><u>...</u></span></p>
-    <p>Cooking_with_me VS Lama = <span class="tooltip" data-tooltip="(9/7)"><u>Coocing_with_me</u></span></p>
-    <br>
+      <ul id="challengeList"></ul>
+      <br>
+      <div id="played-games">
+        <ul></ul>
+      </div>
     </section>
     <div id="main-column">
       <section>
@@ -158,10 +154,43 @@
   </div>
   <section id="old-games">
     <h2>Oude Wedstrijden</h2>
-    <ul>
-      <li>Cooking_with_me VS Lama = Cooking_with_me (9/7)</li>
-      <li>Triggerhappy VS Lama = Triggerhappy (9/5)</li>
-    </ul>
+    <ul></ul>
   </section>
+  <script>
+    fetch('Old_games.json')
+      .then(response => response.json())
+      .then(games => {
+        const uniqueGames = {};
+        const ulChallenge = document.querySelector('#challengeList');
+        games.forEach(game => {
+          const players = [game.player1, game.player2].sort();
+          const key = players.join('_');
+          if (!uniqueGames[key]) {
+            uniqueGames[key] = true;
+            const li = document.createElement('li');
+            if (game.winner) {
+              li.innerHTML = game.player1 + " VS " + game.player2 + " = " +
+                '<span class="tooltip" data-tooltip="(' + game.score1 + '/' + game.score2 + ')"><u>' + game.winner + '</u></span>';
+            } else {
+              li.textContent = game.player1 + " VS " + game.player2 + " = (" + game.score1 + "/" + game.score2 + ")";
+            }
+            ulChallenge.appendChild(li);
+          }
+        });
+
+        const ulOld = document.querySelector('#old-games ul');
+        games.forEach(game => {
+          const li = document.createElement('li');
+          if (game.winner) {
+            li.innerHTML = game.player1 + " VS " + game.player2 + " = " +
+              '<span class="tooltip" data-tooltip="(' + game.score1 + '/' + game.score2 + ')"><u>' + game.winner + '</u></span>';
+          } else {
+            li.textContent = game.player1 + " VS " + game.player2 + " = (" + game.score1 + "/" + game.score2 + ")";
+          }
+          ulOld.appendChild(li);
+        });
+      })
+      .catch(error => console.error('Error fetching games:', error));
+</script>
 </body>
 </html>
