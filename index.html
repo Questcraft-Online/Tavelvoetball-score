@@ -97,27 +97,7 @@
               <th>Score</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Triggerhappy</td>
-              <td>4</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Cooking with me</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Offline</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Lama</td>
-              <td>0</td>
-            </tr>
+          <tbody id="scoreboard">
           </tbody>
         </table>
       </section>
@@ -191,6 +171,19 @@
         });
       })
       .catch(error => console.error('Error fetching games:', error));
-</script>
+
+        fetch('score.json')
+      .then(response => response.json())
+      .then(scores => {
+        scores.sort((a, b) => b.score - a.score);
+        const tbody = document.getElementById('scoreboard');
+        scores.forEach((score, index) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${index + 1}</td><td>${score.player}</td><td>${score.score}</td>`;
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(error => console.error('Error fetching scores:', error));
+  </script>
 </body>
 </html>
