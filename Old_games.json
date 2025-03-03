@@ -1,6 +1,13 @@
 [
   {
     "player1": "Cooking_with_me",
+    "player2": "Offline",
+    "score1": 9,
+    "score2": 4,
+    "winner": "Cooking_with_me"
+  },
+  {
+    "player1": "Cooking_with_me",
     "player2": "Lama",
     "score1": 9,
     "score2": 7,
