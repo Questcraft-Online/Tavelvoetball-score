@@ -1,5 +1,12 @@
 [
   {
+    "player1": "Triggerhappy",
+    "player2": "Offline",
+    "score1": 5,
+    "score2": 9,
+    "winner": "Cooking_with_me"
+  },
+  {
     "player1": "Cooking_with_me",
     "player2": "Offline",
     "score1": 9,
