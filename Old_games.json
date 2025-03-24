@@ -1,5 +1,12 @@
 [  
   {
+    "player1": "ketlinn",
+    "player2": "Offline",
+    "score1": 0,
+    "score2": 0,
+    "winner": "Offline"
+  },
+  {
     "player1": "Offline",
     "player2": "Cooking_with_me",
     "score1": 7,
