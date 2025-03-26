@@ -1,4 +1,11 @@
-[  
+[  |
+  {
+    "player1": "ketlinn",
+    "player2": "Triggerhappy",
+    "score1": 7,
+    "score2": 9,
+    "winner": "Triggerhappy"
+  },
   {
     "player1": "ketlinn",
     "player2": "Offline",
